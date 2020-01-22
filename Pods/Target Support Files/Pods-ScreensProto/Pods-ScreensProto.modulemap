@@ -1,0 +1,6 @@
+framework module Pods_ScreensProto {
+  umbrella header "Pods-ScreensProto-umbrella.h"
+
+  export *
+  module * { export * }
+}

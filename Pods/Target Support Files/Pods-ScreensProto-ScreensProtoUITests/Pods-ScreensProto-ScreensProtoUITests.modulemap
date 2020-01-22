@@ -1,0 +1,6 @@
+framework module Pods_ScreensProto_ScreensProtoUITests {
+  umbrella header "Pods-ScreensProto-ScreensProtoUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
