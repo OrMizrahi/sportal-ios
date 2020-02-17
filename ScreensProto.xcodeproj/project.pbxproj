@@ -23,6 +23,12 @@
 		1038A24123CE293A00C5E331 /* CategoriesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1038A24023CE293A00C5E331 /* CategoriesModel.swift */; };
 		1038A24323CE33FB00C5E331 /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1038A24223CE33FB00C5E331 /* CategoriesTableViewController.swift */; };
 		1038A24523CE352D00C5E331 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1038A24423CE352D00C5E331 /* CategoriesTableViewCell.swift */; };
+		1039306D23F566DF00798CA2 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039306C23F566DF00798CA2 /* PostsTableViewController.swift */; };
+		1039306F23F568EC00798CA2 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039306E23F568EC00798CA2 /* Post.swift */; };
+		1039307123F56C2D00798CA2 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039307023F56C2D00798CA2 /* PostTableViewCell.swift */; };
+		1039307323F5715C00798CA2 /* PostInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039307223F5715C00798CA2 /* PostInfoViewController.swift */; };
+		1039307523F5849500798CA2 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039307423F5849500798CA2 /* NewPostViewController.swift */; };
+		1039307723F591D700798CA2 /* FirebaseStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1039307623F591D700798CA2 /* FirebaseStorage.swift */; };
 		109060C323CF1DCE00FEFACA /* User+Sql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109060C223CF1DCE00FEFACA /* User+Sql.swift */; };
 		109060C523CF20A800FEFACA /* Categories+Sql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109060C423CF20A800FEFACA /* Categories+Sql.swift */; };
 		109060C923CF220200FEFACA /* FootballClub+Sql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 109060C823CF220200FEFACA /* FootballClub+Sql.swift */; };
@@ -78,6 +84,12 @@
 		1038A24023CE293A00C5E331 /* CategoriesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesModel.swift; sourceTree = "<group>"; };
 		1038A24223CE33FB00C5E331 /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewController.swift; sourceTree = "<group>"; };
 		1038A24423CE352D00C5E331 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
+		1039306C23F566DF00798CA2 /* PostsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
+		1039306E23F568EC00798CA2 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		1039307023F56C2D00798CA2 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		1039307223F5715C00798CA2 /* PostInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInfoViewController.swift; sourceTree = "<group>"; };
+		1039307423F5849500798CA2 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		1039307623F591D700798CA2 /* FirebaseStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorage.swift; sourceTree = "<group>"; };
 		109060C223CF1DCE00FEFACA /* User+Sql.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Sql.swift"; sourceTree = "<group>"; };
 		109060C423CF20A800FEFACA /* Categories+Sql.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Categories+Sql.swift"; sourceTree = "<group>"; };
 		109060C823CF220200FEFACA /* FootballClub+Sql.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FootballClub+Sql.swift"; sourceTree = "<group>"; };
@@ -166,6 +178,10 @@
 				10B64B4523D5D875002632E7 /* TeamsTableViewCell.swift */,
 				10B64B4323D5BDB5002632E7 /* TeamsTableViewController.swift */,
 				10FB6A1B23D8A0480026AB76 /* WellcomeUserViewController.swift */,
+				1039306C23F566DF00798CA2 /* PostsTableViewController.swift */,
+				1039307023F56C2D00798CA2 /* PostTableViewCell.swift */,
+				1039307223F5715C00798CA2 /* PostInfoViewController.swift */,
+				1039307423F5849500798CA2 /* NewPostViewController.swift */,
 			);
 			path = ScreensProto;
 			sourceTree = "<group>";
@@ -200,6 +216,8 @@
 				109060C223CF1DCE00FEFACA /* User+Sql.swift */,
 				109060C423CF20A800FEFACA /* Categories+Sql.swift */,
 				109060C823CF220200FEFACA /* FootballClub+Sql.swift */,
+				1039306E23F568EC00798CA2 /* Post.swift */,
+				1039307623F591D700798CA2 /* FirebaseStorage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,7 +317,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1110;
 				LastUpgradeCheck = 1110;
-				ORGANIZATIONNAME = "לידור משיח";
+				ORGANIZATIONNAME = "Lidor Mashiah";
 				TargetAttributes = {
 					102A991823B0B5E400EAFEA3 = {
 						CreatedOnToolsVersion = 11.1;
@@ -508,20 +526,26 @@
 				102A992123B0B5E400EAFEA3 /* ViewController.swift in Sources */,
 				10FB6A1C23D8A0480026AB76 /* WellcomeUserViewController.swift in Sources */,
 				102A991D23B0B5E400EAFEA3 /* AppDelegate.swift in Sources */,
+				1039307323F5715C00798CA2 /* PostInfoViewController.swift in Sources */,
 				109060C923CF220200FEFACA /* FootballClub+Sql.swift in Sources */,
 				1038A23923CE02ED00C5E331 /* FootballClub.swift in Sources */,
 				1038A22F23CDE5A400C5E331 /* ModelSql.swift in Sources */,
 				1038A24523CE352D00C5E331 /* CategoriesTableViewCell.swift in Sources */,
+				1039307523F5849500798CA2 /* NewPostViewController.swift in Sources */,
 				109060C523CF20A800FEFACA /* Categories+Sql.swift in Sources */,
 				10B64B4623D5D875002632E7 /* TeamsTableViewCell.swift in Sources */,
 				109060C323CF1DCE00FEFACA /* User+Sql.swift in Sources */,
 				1038A24323CE33FB00C5E331 /* CategoriesTableViewController.swift in Sources */,
 				10B64B4423D5BDB5002632E7 /* TeamsTableViewController.swift in Sources */,
+				1039306D23F566DF00798CA2 /* PostsTableViewController.swift in Sources */,
+				1039307123F56C2D00798CA2 /* PostTableViewCell.swift in Sources */,
 				1038A24123CE293A00C5E331 /* CategoriesModel.swift in Sources */,
 				10F222B623C34A11008854BE /* Model.swift in Sources */,
 				102A994D23B0C3DF00EAFEA3 /* SignUpViewController.swift in Sources */,
 				102A991F23B0B5E400EAFEA3 /* SceneDelegate.swift in Sources */,
 				10F222BC23C34DD4008854BE /* User.swift in Sources */,
+				1039307723F591D700798CA2 /* FirebaseStorage.swift in Sources */,
+				1039306F23F568EC00798CA2 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

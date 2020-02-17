@@ -104,7 +104,7 @@ class CategoriesTableViewController: UITableViewController {
         if(segue.identifier == "categoriesSegue"){
             let vc:TeamsTableViewController = segue.destination as! TeamsTableViewController
             vc.selectedCategories = selectedNames;
-            
+            selectedNames = [String]();
         }
     }
 }

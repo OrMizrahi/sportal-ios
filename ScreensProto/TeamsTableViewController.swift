@@ -44,8 +44,20 @@ class TeamsTableViewController: UITableViewController {
                //cell.avatarImg.image = UIImage(named: "avatar")
                return cell
            }
-    
-
+    var selected:Team?
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+           if (segue.identifier == "TeamPostsSegue"){
+               let vc:PostsTableViewController = segue.destination as! PostsTableViewController
+            vc.teamName = selected!.teamName
+           }
+       }
+       
+       
+      
+       override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+           selected = teamsData[indexPath.row]
+           performSegue(withIdentifier: "TeamPostsSegue", sender: self)
+       }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

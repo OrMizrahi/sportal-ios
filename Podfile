@@ -13,7 +13,7 @@ target 'ScreensProto' do
   pod 'Firebase/Database'
   pod 'FirebaseUI'
   pod 'FBSDKLoginKit'
-
+  pod 'Kingfisher', '~> 5.0'
 
   target 'ScreensProtoTests' do
  	inherit! :search_paths 
