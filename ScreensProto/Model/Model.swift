@@ -88,6 +88,11 @@ class Model {
           ModelEvents.PostDataNotification.post()
       }
     
+    func deletePost(post:Post) {
+        modelFirebase.deletePost(post: post)
+        //ModelEvents.PostDataNotification.post()
+    }
+    
 }
 
 class ModelEvents{

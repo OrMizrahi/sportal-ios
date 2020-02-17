@@ -62,9 +62,7 @@ class PostsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as! PostTableViewCell
         
         let p = data[indexPath.row]
-         Model.instance.getCurrentUserNameByID { (name) in
-            cell.postFromLabel.text = name;
-               }
+        cell.postFromLabel.text = p.postCreator
         cell.postTitleLabel.text = p.title
         return cell
 

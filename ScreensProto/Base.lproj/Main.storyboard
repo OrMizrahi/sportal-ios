@@ -500,23 +500,44 @@
                                     <action selector="changePhoto:" destination="KaD-t7-DOh" eventType="touchUpInside" id="uRO-ud-sWq"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="kIg-L1-Ioi">
+                                <rect key="frame" x="197" y="374" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="deleting post ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sT3-hb-ohC">
+                                <rect key="frame" x="150" y="333" width="150" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="IeK-Lf-3PF"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZgC-Lw-Tau">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="FkJ-Ni-CcJ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="vdk-zW-xUN">
-                                <rect key="frame" x="319" y="7" width="75" height="30"/>
+                        <nil key="title"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LII-Fr-cbV">
+                            <rect key="frame" x="197" y="11" width="20.5" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="square.and.pencil" catalog="system"/>
+                            <connections>
+                                <action selector="editPost:" destination="KaD-t7-DOh" eventType="touchUpInside" id="5ZB-Aw-CKd"/>
+                            </connections>
+                        </button>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Lpx-fz-6mi">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qdR-zq-HZo">
+                                <rect key="frame" x="374" y="11" width="20" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="square.and.pencil" catalog="system"/>
+                                <state key="normal" image="trash" catalog="system"/>
                                 <connections>
-                                    <action selector="editPost:" destination="KaD-t7-DOh" eventType="touchUpInside" id="fth-1d-Ij7"/>
+                                    <action selector="deletePost:" destination="KaD-t7-DOh" eventType="touchUpInside" id="flF-Kk-qsL"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deletingPostLabel" destination="sT3-hb-ohC" id="FFW-i3-ZDV"/>
                         <outlet property="editImageButton" destination="Xyo-G5-zI5" id="2eS-d7-0UG"/>
                         <outlet property="postContentTextView" destination="ejp-qr-drb" id="wtf-IU-XsP"/>
                         <outlet property="postDate" destination="SGe-PC-Hr3" id="8N0-KT-Vno"/>
@@ -524,6 +545,7 @@
                         <outlet property="postImage" destination="pH4-Ls-paq" id="Ixn-Tg-a35"/>
                         <outlet property="postTitleTextView" destination="Kug-ed-rPo" id="1KV-Rm-7dx"/>
                         <outlet property="updatePostButton" destination="7Lf-04-fsP" id="onJ-j0-ly9"/>
+                        <outlet property="waitingSpiner" destination="kIg-L1-Ioi" id="FkI-1L-Ify"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fmb-ZA-GJE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -552,6 +574,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ihB-c4-1wg">
+                                <rect key="frame" x="17" y="209" width="374" height="256"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="vl6-GA-vrH">
                                 <rect key="frame" x="66" y="114" width="328" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -581,14 +611,17 @@
                                     <action selector="choosePhoto:" destination="sLZ-Qc-x4p" eventType="touchUpInside" id="6XS-E7-F5V"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ihB-c4-1wg">
-                                <rect key="frame" x="17" y="209" width="374" height="256"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="WJj-pY-p8o">
+                                <rect key="frame" x="197" y="345" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Saving post ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fG-oY-GHO">
+                                <rect key="frame" x="153" y="297" width="108" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="uKI-AT-iY2"/>
@@ -598,6 +631,8 @@
                         <outlet property="postContentTextView" destination="ihB-c4-1wg" id="GbN-3h-KdQ"/>
                         <outlet property="postImage" destination="hzO-lm-MVj" id="E28-kv-qAD"/>
                         <outlet property="postTitleTextView" destination="vl6-GA-vrH" id="I9G-Lc-eit"/>
+                        <outlet property="savingPostLabel" destination="4fG-oY-GHO" id="I9U-up-1aA"/>
+                        <outlet property="savingPostSpiner" destination="WJj-pY-p8o" id="evM-ql-GtZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8qE-Xb-k9q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -755,6 +790,7 @@ EwIcAiECJwIvAjECMwI1AjcToxOoE7UTuBPFE8oT0hPVE9oT4gAAAAAAAAIBAAAAAAAAAFIAAAAAAAAA
 AAAAAAAAABPlA
 </mutableData>
         </image>
+        <image name="trash" catalog="system" width="60" height="64"/>
         <image name="twiiter_icon" width="225" height="225"/>
     </resources>
 </document>

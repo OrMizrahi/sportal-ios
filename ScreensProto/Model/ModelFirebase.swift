@@ -171,11 +171,23 @@ class ModelFirebase{
                 document!.reference.updateData([
                     "title": post.title,
                     "content": post.content,
-                    "image": post.image
-                ])
+                    "image": post.image])
             }
         }
-        
+    }
+    
+    func deletePost(post:Post) {
+        let db = Firestore.firestore();
+              db.collection("posts")
+                .whereField("postId", isEqualTo: post.postId)
+                .getDocuments() { (querySnapshot, err) in
+                if err != nil {}
+                else {
+                    for document in querySnapshot!.documents {
+                        document.reference.delete()
+                    }
+                }
+            }
     }
     
 }

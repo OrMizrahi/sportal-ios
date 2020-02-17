@@ -16,18 +16,19 @@ class Post {
     var content = ""
     var teamName = ""
     var postId = ""
+    var postCreator = ""
     
     init(t:String) {
         self.title = t
     }
-    init(title:String,date:String,image:String,content:String,teamName:String,postId:String){
+    init(title:String,date:String,image:String,content:String,teamName:String,postId:String,creator:String){
         self.teamName = teamName
         self.title = title
         self.date = date
         self.image = image
         self.content = content
         self.postId = postId
-        
+        self.postCreator = creator;
     }
     
     init(json:[String:Any]) {
@@ -37,6 +38,7 @@ class Post {
         self.content = json["content"] as! String
         self.teamName = json["teamName"] as! String
         self.postId = json["postId"] as! String
+        self.postCreator = json["postCreator"] as! String
     }
     
     func toJson()-> [String:String]{
@@ -47,7 +49,7 @@ class Post {
         json["content"] = content
         json["teamName"] = teamName
         json["postId"] = postId
-        
+        json["postCreator"] = postCreator
         return json
     }
     
