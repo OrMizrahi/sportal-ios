@@ -1,10 +1,3 @@
-//
-//  Post.swift
-//  ScreensProto
-//
-//  Created by לידור משיח on 13/02/2020.
-//  Copyright © 2020 Lidor Mashiah. All rights reserved.
-//
 
 import Foundation
 import Firebase
@@ -18,7 +11,7 @@ class Post {
     var teamName = ""
     var postId = ""
     var postCreator = ""
-    //var lastUpdate:Int64?
+    
     
     init(t:String) {
         self.title = t
@@ -33,7 +26,7 @@ class Post {
         self.postCreator = creator;
     }
     
-  convenience init(json:[String:Any]) {
+    convenience init(json:[String:Any]) {
         let title = json["title"] as! String
         let date = json["date"] as! String
         let image = json["image"] as! String
@@ -42,8 +35,7 @@ class Post {
         let postId = json["postId"] as! String
         let postCreator = json["postCreator"] as! String
         self.init(title:title,date:date,image:image,content:content,teamName:teamName,postId:postId,creator:postCreator)
-        //let ts = json["lastUpdate"] as! Timestamp
-       // lastUpdate = ts.seconds
+        
     }
     
     func toJson()-> [String:Any]{
@@ -55,7 +47,7 @@ class Post {
         json["teamName"] = teamName
         json["postId"] = postId
         json["postCreator"] = postCreator
-       // json["lastUpdate"] = FieldValue.serverTimestamp()
+        
         return json
     }
     
