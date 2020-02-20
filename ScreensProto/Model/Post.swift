@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class Post {
     
@@ -17,6 +18,7 @@ class Post {
     var teamName = ""
     var postId = ""
     var postCreator = ""
+    //var lastUpdate:Int64?
     
     init(t:String) {
         self.title = t
@@ -31,18 +33,21 @@ class Post {
         self.postCreator = creator;
     }
     
-    init(json:[String:Any]) {
-        self.title = json["title"] as! String
-        self.date = json["date"] as! String
-        self.image = json["image"] as! String
-        self.content = json["content"] as! String
-        self.teamName = json["teamName"] as! String
-        self.postId = json["postId"] as! String
-        self.postCreator = json["postCreator"] as! String
+  convenience init(json:[String:Any]) {
+        let title = json["title"] as! String
+        let date = json["date"] as! String
+        let image = json["image"] as! String
+        let content = json["content"] as! String
+        let teamName = json["teamName"] as! String
+        let postId = json["postId"] as! String
+        let postCreator = json["postCreator"] as! String
+        self.init(title:title,date:date,image:image,content:content,teamName:teamName,postId:postId,creator:postCreator)
+        //let ts = json["lastUpdate"] as! Timestamp
+       // lastUpdate = ts.seconds
     }
     
-    func toJson()-> [String:String]{
-        var json = [String:String]()
+    func toJson()-> [String:Any]{
+        var json = [String:Any]()
         json["title"] = title
         json["date"] = date
         json["image"] = image
@@ -50,6 +55,7 @@ class Post {
         json["teamName"] = teamName
         json["postId"] = postId
         json["postCreator"] = postCreator
+       // json["lastUpdate"] = FieldValue.serverTimestamp()
         return json
     }
     

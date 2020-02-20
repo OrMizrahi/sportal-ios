@@ -18,7 +18,7 @@ class Model {
     private init(){
         modelSql.connect();
         currentDate()
-//        self.addTeams(teams: [Team(name: "barca",logo: "",type: "basketball"),Team(name: "barca2",logo:"",type:"soccer"),Team(name:"barca3",logo:"",type:"soccer")]);
+        
     }
     
     func addUser(user:User){
@@ -29,22 +29,44 @@ class Model {
     func addTeams(teams:[Team]){
         for team in teams{
             modelFirebase.addTeam(team: team);
-            team.addTeam();
+            //team.addTeam()
         }
     }
     
     func getAllTeams(callback:@escaping ([Team]?)->Void){
-        modelFirebase.getAllTeams(callback: callback);
+        let lud = Team.getLastUpdateDate()
+        
+        modelFirebase.getAllTeams(since: lud) { (data) in
+            var lud:Int64 = 0;
+            for team in data! {
+                team.addTeam()
+                if team.lastUpdate! > lud { lud = team.lastUpdate! }
+            }
+            Team.setLastUpdate(lastUpdated: lud)
+            let finalData = Team.getAllTeamsFromDb()
+            callback(finalData)
+        }
     }
     
     func getTeamsByTypes(types: [String], callback:@escaping ([Team]?)->Void){
-        modelFirebase.getTeamsByType(types: types, callback: callback);
+          let lud = Team.getLastUpdateDate()
+              modelFirebase.getTeamsByType(since: lud,types: types) { (data) in
+                  var lud:Int64 = 0;
+                  for team in data! {
+                      team.addTeam()
+                      if team.lastUpdate! > lud { lud = team.lastUpdate! }
+                  }
+                  Team.setLastUpdate(lastUpdated: lud)
+                let finalData = Team.getTeamsByTypesFromDb(types:types)
+                  callback(finalData)
+              }
+      
     }
     
     func addCategories(categories:[CategoriesModel]){
         
         for currentCategory in categories {
-            currentCategory.addCategory();
+        //    currentCategory.addCategory();
             modelFirebase.addCategory(category: currentCategory);
         }
     }
@@ -55,10 +77,21 @@ class Model {
     }
     
     func getAllCategories(callback:@escaping ([CategoriesModel]?)->Void){
-        modelFirebase.getAllCategories(callback: callback);
+        let lud = CategoriesModel.getLastUpdateDate()
+        
+        modelFirebase.getAllCategories(since: lud) { (data) in
+            var lud:Int64 = 0;
+            for category in data! {
+                category.addCategory()
+                if category.lastUpdate! > lud { lud = category.lastUpdate! }
+            }
+            CategoriesModel.setLastUpdate(lastUpdated: lud)
+            let finalData = CategoriesModel.getAllCategoriesFromDb()
+            callback(finalData)
+        }
     }
     func getAllPostsByTeamName(teamName:String,callback:@escaping ([Post]?)->Void){
-        modelFirebase.getAllPostsByTeamName(teamName:teamName,callback: callback);
+       modelFirebase.getAllPostsByTeamName(teamName:teamName,callback: callback);
        }
  
     func getCurrentUserNameByID(callback:@escaping (String?)->Void){
@@ -77,20 +110,25 @@ class Model {
         let myDate = formatter.date(from: s)
         formatter.dateFormat = "dd-MM-yyyy"
         let date = formatter.string(from: myDate!)
-        print(date)
+        //print(date)
         return date
     }
     
     func updatePost(post:Post){
-        print("updating")
-        print(post.postId)
+         //let lud = Post.getLastUpdateDate()
+        
           modelFirebase.updatePost(post: post)
-          ModelEvents.PostDataNotification.post()
+          Post.updatePostOnSql(post: post)
+         // Post.setLastUpdate(lastUpdated: lud)
+           ModelEvents.PostDataNotification.post()
       }
     
     func deletePost(post:Post) {
+        // let lud = Post.getLastUpdateDate()
         modelFirebase.deletePost(post: post)
-        //ModelEvents.PostDataNotification.post()
+        Post.deletePostOnSql(post:post)
+        //Post.setLastUpdate(lastUpdated: lud)
+        ModelEvents.PostDataNotification.post()
     }
     
 }

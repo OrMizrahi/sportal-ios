@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class User{
     
@@ -15,6 +16,7 @@ class User{
     var password = ""
     var validate = ""
     var uid = ""
+    var lastUpdate:Int64?
     
     init(fname:String,email:String,pass:String,valid:String){
         self.fullName = fname
@@ -29,15 +31,18 @@ class User{
         self.password = json["password"] as! String
         self.validate = json["validate"] as! String
         self.uid = json["uid"] as! String
+        let ts = json["lastUpdate"] as! Timestamp
+        lastUpdate = ts.seconds
     }
     
-    func toJson()-> [String:String]{
-        var json = [String:String]()
+    func toJson()-> [String:Any]{
+        var json = [String:Any]()
         json["fullName"] = fullName
         json["email"] = email
         json["password"] = password
         json["validate"] = validate
         json["uid"] = uid
+        json["lastUpdate"] = FieldValue.serverTimestamp()
         return json
     }
 }

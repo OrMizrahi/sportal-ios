@@ -69,7 +69,8 @@ UINavigationControllerDelegate {
     }
     
     @objc func changePage(){
-            ModelEvents.PostDataNotification.post();        self.navigationController?.popViewController(animated: true);
+            ModelEvents.PostDataNotification.post();
+            self.navigationController?.popViewController(animated: true);
     }
     
     @IBAction func editPost(_ sender: Any) {
@@ -111,7 +112,6 @@ UINavigationControllerDelegate {
     
     
     var selectedImage:UIImage?
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage;
         self.postImage.image = selectedImage;
@@ -132,11 +132,11 @@ UINavigationControllerDelegate {
         Model.instance.saveImage(image: selectedImage) { (url) in
             self.post?.image = url
             Model.instance.updatePost(post: self.post!)
+            
+            //ModelEvents.PostDataNotification.post()
             self.navigationController?.popViewController(animated: true)
         }
-        
-        
-        
+    
     }
     /*
      // MARK: - Navigation

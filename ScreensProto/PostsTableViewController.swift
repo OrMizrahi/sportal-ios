@@ -14,14 +14,20 @@ class PostsTableViewController: UITableViewController {
     var teamName:String = ""
     var observer:Any?;
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
         observer = ModelEvents.PostDataNotification.observe{
             self.reloadData();
         }
         
         reloadData();
+    }
+    @objc func refresh(sender:Any){
+        self.reloadData()
+        self.refreshControl?.endRefreshing()
     }
 
     deinit{
@@ -34,15 +40,17 @@ class PostsTableViewController: UITableViewController {
         Model.instance.getAllPostsByTeamName(teamName: teamName) { (_data:[Post]?) in
             if (_data != nil) {
                 self.data = _data!;
-                print(self.teamName)
-                print(self.data)
+               // print(self.teamName)
+               // print(self.data)
                 self.tableView.reloadData();
                 }
         }
       }
     
+    
+    
     override func viewWillAppear(_ animated: Bool) {
-          print("viewWillAppear")
+        //  print("viewWillAppear")
           
       }
     

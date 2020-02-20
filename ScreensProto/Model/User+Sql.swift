@@ -14,10 +14,10 @@ extension User{
         var errorMsg: UnsafeMutablePointer<Int8>? = nil;
     let res = sqlite3_exec(ModelSql.instance.database, "CREATE TABLE IF NOT EXISTS USERS (FULLNAME TEXT,EMAIL TEXT PRIMARY KEY, PASSWORD TEXT, UID TEXT)",nil,nil, &errorMsg);
         if(res != 0){
-            print("error in creating table");
+            //print("error in creating table");
             return;
         } else{
-            print("table was created");
+            //print("table was created");
             return;
             }
     }
@@ -37,12 +37,36 @@ extension User{
                 sqlite3_bind_text(sqlite3_stmt,4,uid,-1,nil);
                 
                 if(sqlite3_step(sqlite3_stmt) == SQLITE_DONE){
-                    print("new row added succesfully");
+                   // print("new row added succesfully");
                 }
             }
         }
     
-    
+    static func getAllUsersFromDb()->[User]{
+           var sqlite3_stmt: OpaquePointer? = nil
+           var data = [User]()
+           if(sqlite3_prepare_v2(ModelSql.instance.database,"SELECT * from USERS;",-1,&sqlite3_stmt,nil) == SQLITE_OK){
+                while(sqlite3_step(sqlite3_stmt) == SQLITE_ROW){
+                   let fullName = String(cString:sqlite3_column_text(sqlite3_stmt,0)!)
+                   let email = String(cString:sqlite3_column_text(sqlite3_stmt,1)!)
+                   let password = String(cString:sqlite3_column_text(sqlite3_stmt,2)!)
+                   let uid = String(cString:sqlite3_column_text(sqlite3_stmt,3)!)
+                
+                   let user = User(fname: fullName, email: email, pass: password, valid: uid)
+                   data.append(user)
+               }
+           }
+           sqlite3_finalize(sqlite3_stmt)
+           return data
+       }
+       
+        static func setLastUpdate(lastUpdated:Int64){
+            return ModelSql.instance.setLastUpdate(name: "USERS", lastUpdated: lastUpdated);
+        }
+
+        static func getLastUpdateDate()->Int64{
+            return ModelSql.instance.getLastUpdateDate(name: "USERS")
+        }
     
     
 }

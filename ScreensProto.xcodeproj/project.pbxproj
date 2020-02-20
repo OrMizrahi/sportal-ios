@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0911C9A8DB34FD3CCE9A6DAF /* Pods_ScreensProto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72CDB99D54EDBE0872441653 /* Pods_ScreensProto.framework */; };
+		100531FE23FD5D2C00298E81 /* Post+Sql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100531FD23FD5D2C00298E81 /* Post+Sql.swift */; };
 		102A991D23B0B5E400EAFEA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A991C23B0B5E400EAFEA3 /* AppDelegate.swift */; };
 		102A991F23B0B5E400EAFEA3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A991E23B0B5E400EAFEA3 /* SceneDelegate.swift */; };
 		102A992123B0B5E400EAFEA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 102A992023B0B5E400EAFEA3 /* ViewController.swift */; };
@@ -61,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		0F70AC112270EA3416C24EA7 /* Pods-ScreensProto-ScreensProtoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScreensProto-ScreensProtoUITests.debug.xcconfig"; path = "Target Support Files/Pods-ScreensProto-ScreensProtoUITests/Pods-ScreensProto-ScreensProtoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		100531FD23FD5D2C00298E81 /* Post+Sql.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+Sql.swift"; sourceTree = "<group>"; };
 		102A991923B0B5E400EAFEA3 /* Sportal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sportal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		102A991C23B0B5E400EAFEA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		102A991E23B0B5E400EAFEA3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				1038A23823CE02ED00C5E331 /* FootballClub.swift */,
 				1038A24023CE293A00C5E331 /* CategoriesModel.swift */,
 				109060C223CF1DCE00FEFACA /* User+Sql.swift */,
+				100531FD23FD5D2C00298E81 /* Post+Sql.swift */,
 				109060C423CF20A800FEFACA /* Categories+Sql.swift */,
 				109060C823CF220200FEFACA /* FootballClub+Sql.swift */,
 				1039306E23F568EC00798CA2 /* Post.swift */,
@@ -525,6 +528,7 @@
 				1038A22B23C358E300C5E331 /* ModelFirebase.swift in Sources */,
 				102A992123B0B5E400EAFEA3 /* ViewController.swift in Sources */,
 				10FB6A1C23D8A0480026AB76 /* WellcomeUserViewController.swift in Sources */,
+				100531FE23FD5D2C00298E81 /* Post+Sql.swift in Sources */,
 				102A991D23B0B5E400EAFEA3 /* AppDelegate.swift in Sources */,
 				1039307323F5715C00798CA2 /* PostInfoViewController.swift in Sources */,
 				109060C923CF220200FEFACA /* FootballClub+Sql.swift in Sources */,
