@@ -1,10 +1,3 @@
-//
-//  NewPostViewController.swift
-//  ScreensProto
-//
-//  Created by לידור משיח on 13/02/2020.
-//  Copyright © 2020 Lidor Mashiah. All rights reserved.
-//
 
 import UIKit
 
@@ -50,7 +43,6 @@ UINavigationControllerDelegate  {
                 
                 Model.instance.addPost(post: p);
 
-               /* Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(self.changePage), userInfo: nil, repeats: false);*/
                 self.navigationController?.popViewController(animated:true);
                 }
             }
@@ -71,7 +63,6 @@ UINavigationControllerDelegate  {
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
-    
     
     var selectedImage:UIImage?
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

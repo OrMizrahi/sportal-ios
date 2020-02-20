@@ -1,10 +1,3 @@
-//
-//  PostInfoViewController.swift
-//  ScreensProto
-//
-//  Created by לידור משיח on 13/02/2020.
-//  Copyright © 2020 Lidor Mashiah. All rights reserved.
-//
 
 import UIKit
 import Kingfisher
@@ -20,6 +13,7 @@ UINavigationControllerDelegate {
     @IBOutlet weak var editImageButton: UIButton!
     @IBOutlet weak var updatePostButton: UIButton!
     @IBOutlet weak var waitingSpiner: UIActivityIndicatorView!
+    @IBOutlet weak var updatingPostLabel: UILabel!
     @IBOutlet weak var deletingPostLabel: UILabel!
     
     
@@ -51,8 +45,6 @@ UINavigationControllerDelegate {
                     self.waitingSpiner.isHidden = false
                     self.deletingPostLabel.isHidden = false
                     Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.changePage), userInfo: nil, repeats: false);
-                    
-                    
                 }));
                 
                 alert.addAction(UIAlertAction(title: "No", style: .default, handler: { action in
@@ -63,14 +55,12 @@ UINavigationControllerDelegate {
             }else{
                 return
             }
-            
         }
-        
     }
     
     @objc func changePage(){
-            ModelEvents.PostDataNotification.post();
-            self.navigationController?.popViewController(animated: true);
+        ModelEvents.PostDataNotification.post();
+        self.navigationController?.popViewController(animated: true);
     }
     
     @IBAction func editPost(_ sender: Any) {
@@ -96,10 +86,11 @@ UINavigationControllerDelegate {
         updatePostButton.isHidden = true
         waitingSpiner.isHidden = true
         deletingPostLabel.isHidden = true
+        updatingPostLabel.isHidden = true
     }
     
     @IBAction func changePhoto(_ sender: Any) {
-            if UIImagePickerController.isSourceTypeAvailable(
+        if UIImagePickerController.isSourceTypeAvailable(
             UIImagePickerController.SourceType.photoLibrary) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
@@ -120,7 +111,8 @@ UINavigationControllerDelegate {
     
     
     @IBAction func update(_ sender: Any) {
-        
+        self.waitingSpiner.isHidden = false
+        self.updatingPostLabel.isHidden = false
         self.post!.content = self.postContentTextView.text
         self.post!.title = self.postTitleTextView.text
         guard let selectedImage = selectedImage else {
@@ -132,20 +124,7 @@ UINavigationControllerDelegate {
         Model.instance.saveImage(image: selectedImage) { (url) in
             self.post?.image = url
             Model.instance.updatePost(post: self.post!)
-            
-            //ModelEvents.PostDataNotification.post()
             self.navigationController?.popViewController(animated: true)
         }
-    
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
